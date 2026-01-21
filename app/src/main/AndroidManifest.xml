@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permisos de ubicación -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Permiso de cámara -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <!-- Permiso de vibración -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Para guardar fotos (Android 12 y menores) -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Miappdeber">
+
+        <!-- FileProvider -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- Main -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Miappdeber">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Formulario de Accidentes -->
+        <activity
+            android:name=".AccidentFormActivity"
+            android:exported="false"
+            android:label="Registro de Accidente"
+            android:theme="@style/Theme.Miappdeber" />
+
+        <!-- Location (Mantener por referencia si es necesario) -->
+        <activity
+            android:name=".LocationActivity"
+            android:exported="false"
+            android:label="Ubicación"
+            android:theme="@style/Theme.Miappdeber" />
+
+        <!-- Camera (Mantener por referencia si es necesario) -->
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false"
+            android:label="Cámara"
+            android:theme="@style/Theme.Miappdeber" />
+
+    </application>
+
+</manifest>
